@@ -1,0 +1,14 @@
+# Secure MCP (SMCP) Project Configuration
+# Use with: ./init-project.sh --config smcp-config.yml
+
+# Basic project information
+project_name: "Secure MCP"
+project_description: "A secure MCP server platform"
+
+# Author information
+author_name: "Ryan Spooner"
+author_email: "rspooner@ischyolabs.com"
+
+# Project settings
+license_type: "MIT"
+project_type: "Cloud"

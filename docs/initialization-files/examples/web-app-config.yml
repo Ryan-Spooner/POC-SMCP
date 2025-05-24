@@ -1,0 +1,19 @@
+# Web Application Project Configuration
+# Use with: ./init-project.sh --config examples/web-app-config.yml
+
+# Basic project information
+project_name: "TaskFlow Web App"
+project_description: "A modern task management web application with real-time collaboration"
+
+# Author information
+author_name: "Development Team"
+author_email: "dev-team@company.com"
+
+# Project settings
+license_type: "MIT"
+project_type: "web"
+
+# Additional metadata (optional)
+repository_url: "https://github.com/company/taskflow-web"
+documentation_url: "https://docs.taskflow.com"
+demo_url: "https://demo.taskflow.com"

@@ -1,0 +1,19 @@
+# Library Project Configuration
+# Use with: ./init-project.sh --config examples/library-config.yml
+
+# Basic project information
+project_name: "DataFlow Utils"
+project_description: "A TypeScript utility library for data transformation and validation"
+
+# Author information
+author_name: "Library Team"
+author_email: "libraries@company.com"
+
+# Project settings
+license_type: "MIT"
+project_type: "library"
+
+# Additional metadata (optional)
+repository_url: "https://github.com/company/dataflow-utils"
+npm_package: "@company/dataflow-utils"
+target_environments: "Node.js, Browser"

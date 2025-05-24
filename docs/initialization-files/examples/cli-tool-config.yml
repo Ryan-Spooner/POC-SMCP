@@ -1,0 +1,19 @@
+# CLI Tool Project Configuration
+# Use with: ./init-project.sh --config examples/cli-tool-config.yml
+
+# Basic project information
+project_name: "DevOps Helper CLI"
+project_description: "A command-line tool for automating common DevOps tasks"
+
+# Author information
+author_name: "DevOps Team"
+author_email: "devops@company.com"
+
+# Project settings
+license_type: "Apache-2.0"
+project_type: "cli"
+
+# Additional metadata (optional)
+repository_url: "https://github.com/company/devops-cli"
+installation_method: "npm install -g @company/devops-cli"
+supported_platforms: "Linux, macOS, Windows"

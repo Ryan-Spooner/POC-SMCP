@@ -1,0 +1,27 @@
+docs/project-init-refactor.md
+# JetBrains IDEs
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
+.idea/dataSources/
+.idea/dataSources.ids
+.idea/dataSources.local.xml
+.idea/sqlDataSources.xml
+.idea/dynamic.xml
+.idea/usage.statistics.xml
+# Potentially exclude these if using Maven/Gradle, as they're often generated
+# .idea/modules.xml
+# *.iml
+# .idea/gradle.xml
+
+# If you have specific modules/folders you want to exclude from VCS but keep in .idea
+# .idea/my_temp_folder/
+
+# Local history (user-specific)
+.idea/vcs.xml.local
+.idea/vcs.xml.orig
+.idea/vcs.xml.bak
+.idea/vcs.xml.BASE
+.idea/vcs.xml.REMOTE
+.idea/vcs.xml.LOCAL
+.idea/vcs.xml.MERGED

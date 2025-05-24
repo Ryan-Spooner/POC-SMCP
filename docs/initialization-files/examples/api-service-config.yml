@@ -1,0 +1,19 @@
+# API Service Project Configuration
+# Use with: ./init-project.sh --config examples/api-service-config.yml
+
+# Basic project information
+project_name: "User Management API"
+project_description: "RESTful API service for user authentication and profile management"
+
+# Author information
+author_name: "Backend Team"
+author_email: "backend@company.com"
+
+# Project settings
+license_type: "MIT"
+project_type: "api"
+
+# Additional metadata (optional)
+repository_url: "https://github.com/company/user-api"
+api_version: "v1"
+deployment_environment: "AWS ECS"
