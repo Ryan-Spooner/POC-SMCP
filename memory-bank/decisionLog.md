@@ -32,18 +32,28 @@ Updates: New decisions appended by AI or user.
 ---
 
 **Decision:**
-* [Clear statement of the decision made]
+* Adopt Cloudflare Workers + KV + R2 + DNS as Primary Infrastructure Stack
 
 **Rationale:**
-* [Why this decision was made; alternatives considered]
+* Comprehensive service ecosystem with excellent MCP compatibility
+* Cost-effective with generous free tiers ($6/month for POC, $34/month for production scale)
+* Global edge performance with <100ms latency worldwide
+* Built-in security, DDoS protection, and multi-tenant isolation capabilities
+* Excellent developer experience with Wrangler CLI and local development tools
 
 **Context/Trigger:**
-* [What led to needing this decision?]
+* SMCP-001-02 research revealed Cloudflare provides all required services
+* Need to establish infrastructure foundation for MCP server hosting POC
+* Alternative cloud providers would require more complex setup and higher costs
 
 **Implementation Notes:**
-* [Key files affected, specific techniques used, gotchas]
+* Workers: Use HTTP transport exclusively, leverage 128MB memory and 5min CPU limits
+* KV: Implement session management via Mcp-Session-Id headers with tenant isolation
+* R2: Use for larger data storage needs with S3-compatible API
+* DNS: Leverage Custom Domains for clean MCP server endpoints
+* Multi-tenancy: Worker-level isolation + KV namespacing + R2 bucket separation
 
-**Timestamp:** 2025-05-24 15:15:37
+**Timestamp:** 2025-05-25
 
 ---
 

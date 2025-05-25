@@ -15,6 +15,11 @@ Last Updated: 2025-05-24
   - Identified HTTP transport as viable path for Cloudflare Workers compatibility
   - Documented runtime requirements, communication patterns, and constraints
   - Created detailed research document: docs/mcp-protocol-research.md
+* 2025-05-25 - **SMCP-001-02** - Cloudflare Services Research
+  - Completed comprehensive analysis of Cloudflare Workers, KV, R2, and DNS capabilities
+  - Validated technical compatibility and cost-effectiveness for MCP hosting
+  - Documented service limits, pricing models, and integration patterns
+  - Created detailed research document: docs/cloudflare-services-research.md
 
 ## Current Tasks / In Progress
 * SMCP-001 - Discovery & Planning Phase (Week 1-2): Research and architecture design
