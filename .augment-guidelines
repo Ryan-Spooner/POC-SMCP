@@ -19,6 +19,7 @@ memory_system:
     productContext: productContext.md   # High-level project goals, features, architecture.
     activeContext: activeContext.md    # Current focus, recent changes, open questions.
     progress: progress.md            # Task tracking (completed, current, backlog).
+    productBacklog: product-backlog.md  # Detailed project phases, tasks, and backlog management.
     decisionLog: decisionLog.md        # Log of significant technical decisions.
     systemPatterns: systemPatterns.md  # Recurring code patterns, architectural choices, style guides.
 
@@ -29,6 +30,7 @@ memory_system:
     productContext.md: APPEND # Product context generally evolves by adding info.
     activeContext.md: REPLACE_SECTION # Current focus/changes usually replace previous state. Use ## headers as anchors.
     progress.md: APPEND # Append completed tasks, discovered items. Current tasks might need section replacement.
+    product-backlog.md: REPLACE_SECTION # Task status updates replace sections; completed tasks moved to completion section.
     decisionLog.md: APPEND # Always append new decisions chronologically.
     systemPatterns.md: APPEND # Add new patterns or refine existing ones (manual edit might be better for refinement).
 
@@ -163,3 +165,45 @@ memory_system:
 
      ## Deployment Patterns
      * [add if defined]
+
+    product-backlog.md: |
+      ---
+      Purpose: Tracks project phases, tasks, and backlog items for development.
+      Updates: Tasks moved between sections as they progress through development lifecycle.
+      Last Updated: 2025-05-24
+      ---
+
+      # Product Backlog
+
+      ## Project Overview
+      **Project:** [Project Name]
+      **Duration:** [Timeline]
+      **Goal:** [Primary objective]
+
+      ---
+
+      ## Phase 1: [Phase Name] ([Timeline])
+      **Status:** Not Started | In Progress | Completed
+      **Goal:** [Phase objective]
+
+      ### Tasks
+      - [ ] **[TASK-ID]** - [Task Description]
+        - [Detailed requirements]
+        - **Priority:** High | Medium | Low | **Estimate:** [Time estimate]
+
+      ---
+
+      ## Backlog Items (Future Considerations)
+      - **[FUTURE-ID]** - [Future enhancement description]
+
+      ---
+
+      ## Completed Tasks
+      *(Tasks will be moved here as they are completed)*
+
+      ---
+
+      ## Notes
+      - Task estimates are in working days
+      - Priority levels: High, Medium, Low
+      - Tasks may be broken down further during implementation
