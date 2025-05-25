@@ -117,17 +117,35 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
 
 #### Constraints & Adaptations
 - **stdio Transport:** Incompatible (no subprocess support)
-- **Local Files:** Must use Cloudflare storage services (KV, R2, D1)
+- **Local Files:** Must use Cloudflare storage services (KV, R2, DNS)
 - **Memory Limit:** 128 MB per Worker instance
 - **CPU Time:** 30 seconds default, up to 5 minutes configurable
 
-#### Implementation Strategy
-- Focus exclusively on Streamable HTTP transport
-- Leverage Cloudflare services for persistence and storage
-- Implement multi-tenancy via session isolation
-- Use global edge network for performance and availability
+For detailed MCP research findings, see: [`docs/mcp-protocol-research.md`](docs/mcp-protocol-research.md)
 
-For detailed research findings, see: [`docs/mcp-protocol-research.md`](docs/mcp-protocol-research.md)
+### ✅ Cloudflare Services Ecosystem
+
+**Key Finding:** Cloudflare provides a comprehensive, cost-effective infrastructure stack for MCP hosting.
+
+#### Service Capabilities
+- **Workers:** 128MB memory, 5min CPU time, global edge deployment
+- **KV:** Low-latency key-value storage for session management
+- **R2:** S3-compatible object storage with zero egress fees
+- **DNS:** Custom domains with automatic certificate management
+
+#### Cost Analysis
+- **POC Scale:** ~$6/month for 10 concurrent MCP servers
+- **Production Scale:** ~$34/month for 100 concurrent MCP servers
+- **Free Tier:** Generous limits suitable for development and testing
+
+#### Implementation Strategy
+- Use Workers for MCP server hosting with HTTP transport
+- Implement session management via KV with `Mcp-Session-Id` headers
+- Leverage R2 for larger data storage needs
+- Use Custom Domains for clean MCP server endpoints
+- Implement multi-tenant isolation at Worker and storage levels
+
+For detailed Cloudflare research findings, see: [`docs/cloudflare-services-research.md`](docs/cloudflare-services-research.md)
 
 ## Development
 
@@ -158,7 +176,8 @@ cd POC-SMCP
 ```
 POC-SMCP/
 ├── docs/                    # Project documentation
-│   └── mcp-protocol-research.md
+│   ├── mcp-protocol-research.md
+│   └── cloudflare-services-research.md
 ├── memory-bank/             # AI assistant context files
 │   ├── activeContext.md
 │   ├── decisionLog.md
@@ -186,7 +205,7 @@ This is a proof-of-concept project currently in active development. Contribution
 
 ### Current Development Status
 
-- **Phase 1:** Research & Planning (In Progress)
+- **Phase 1:** Research & Planning (In Progress - 2/5 tasks completed)
 - **Contributions:** Not yet accepting external contributions
 - **Timeline:** Contributions welcome after Phase 2 completion
 
@@ -206,6 +225,7 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - **Project Brief:** [`projectBrief.md`](projectBrief.md) - Detailed project requirements and scope
 - **MCP Research:** [`docs/mcp-protocol-research.md`](docs/mcp-protocol-research.md) - Protocol analysis and findings
+- **Cloudflare Research:** [`docs/cloudflare-services-research.md`](docs/cloudflare-services-research.md) - Infrastructure analysis and cost modeling
 - **Memory Bank:** [`memory-bank/`](memory-bank/) - AI assistant context and decision tracking
 
 ## Support & Contact
