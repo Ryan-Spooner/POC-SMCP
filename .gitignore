@@ -9,6 +9,7 @@ docs/project-init-refactor.md
 .idea/sqlDataSources.xml
 .idea/dynamic.xml
 .idea/usage.statistics.xml
+.idea/AugmentWebviewStateStore.xml
 # Potentially exclude these if using Maven/Gradle, as they're often generated
 # .idea/modules.xml
 # *.iml
