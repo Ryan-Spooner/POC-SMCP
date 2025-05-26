@@ -25,8 +25,10 @@ Last Reviewed: 2025-05-25
 
 ## High-Level Architecture
 * **Multi-Tenant Hosting:** V8 isolate-based separation with dedicated Worker instances per tenant
-* **4-Layer Security Model:** Network (DDoS, SSL), Application (auth, validation), Runtime (V8 isolates), Data (namespace isolation)
+* **5-Layer Security Model:** Network (DDoS, SSL, WAF), Application (OAuth 2.1, API keys, validation), Runtime (V8 isolates), Data (encryption, namespace isolation), AI-Generated Code Security (validation, monitoring, secure prompting)
+* **Authentication Strategy:** Dual authentication with OAuth 2.1 (human users) + API keys (services) with MCP protocol compliance
 * **Auto-Scaling Strategy:** Cloudflare's native edge scaling with geographic distribution and automatic load balancing
 * **Storage Architecture:** KV for session management with tenant prefixes, R2 for object storage with bucket isolation
 * **Transport Protocol:** Streamable HTTP with Server-Sent Events for real-time bidirectional communication
 * **Global Performance:** 300+ edge locations with <100ms latency worldwide and automatic failover
+* **Secrets Management:** Encrypted environment variables + KV storage with automated key rotation and AES-256-GCM encryption

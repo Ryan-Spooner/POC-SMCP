@@ -1,7 +1,7 @@
 ---
 Purpose: Document common issues, solutions, and debugging strategies for the project.
 Updates: Added by AI/user when new issues are discovered and resolved.
-Last Reviewed: 2025-05-24
+Last Reviewed: 2025-05-25
 ---
 
 # Troubleshooting Guide

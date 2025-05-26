@@ -31,7 +31,9 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
 ### Key Features (Planned)
 
 - **MCP Server Hosting:** Deploy and run MCP servers on Cloudflare Workers using Streamable HTTP transport
-- **Multi-tenant Isolation:** Secure separation between different MCP server instances
+- **Multi-tenant Isolation:** Secure separation between different MCP server instances using V8 isolates
+- **4-Layer Security Model:** Comprehensive security with Network, Application, Runtime, and Data protection
+- **Dual Authentication:** OAuth 2.1 for human users and API keys for service-to-service communication
 - **Auto-scaling:** Automatic scaling based on demand and usage patterns
 - **Health Monitoring:** Real-time monitoring and health checks for hosted servers
 - **Global Edge Deployment:** Worldwide distribution via Cloudflare's edge network
@@ -41,7 +43,8 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
 - **Infrastructure:** Cloudflare Workers, Cloudflare KV, Cloudflare R2, Cloudflare DNS
 - **Runtime:** JavaScript/TypeScript on Cloudflare Workers runtime
 - **Protocol:** Model Context Protocol (MCP) 2025-03-26 with Streamable HTTP transport
-- **Development Tools:** TypeScript, Node.js, Wrangler CLI, Git
+- **Security:** OAuth 2.1, API key authentication, AES-256-GCM encryption, JWT validation
+- **Development Tools:** TypeScript, Node.js, Wrangler CLI, Zod (validation), JOSE (JWT), Git
 
 ## Project Status
 
@@ -68,10 +71,19 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
   - ✅ Planned auto-scaling and load balancing using Cloudflare's native capabilities
   - ✅ Created comprehensive system architecture diagrams and data flow patterns
 
+- **SMCP-001-04** - Security Strategy Definition (Extended)
+  - ✅ Defined comprehensive 4-layer security model (Network, Application, Runtime, Data)
+  - ✅ Established multi-tenant isolation requirements with V8 isolate separation
+  - ✅ Designed OAuth 2.1 + API key authentication strategy with MCP protocol compliance
+  - ✅ Planned secrets management using Cloudflare encrypted environment variables
+  - ✅ Created detailed security document with implementation patterns
+  - ✅ **Extension**: Researched AI-assisted coding security vulnerabilities and threats
+  - ✅ **Extension**: Enhanced to 5-layer security model including AI-generated code security
+  - ✅ **Extension**: Developed comprehensive AI coding security mitigation strategies
+
 ### Current Tasks 🔄
 
-- **SMCP-001-04** - Security Strategy Definition (Next)
-- **SMCP-001-05** - Development Environment Setup (Planned)
+- **SMCP-001-05** - Development Environment Setup (Next)
 
 ### Project Phases
 
@@ -103,9 +115,17 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
 
 - **Primary Transport:** Streamable HTTP (MCP 2025-03-26)
 - **Communication:** Bidirectional via single HTTP endpoint
-- **Session Management:** `Mcp-Session-Id` headers + Cloudflare KV
+- **Authentication:** OAuth 2.1 Bearer tokens or API key authentication
+- **Session Management:** `Mcp-Session-Id` headers + Cloudflare KV with tenant isolation
 - **Real-time:** Server-Sent Events (SSE) for streaming
 - **Resumability:** Event IDs for connection recovery
+
+### Security Architecture
+
+- **4-Layer Security Model:** Network (DDoS, SSL, WAF) → Application (OAuth 2.1, validation) → Runtime (V8 isolates) → Data (encryption, namespacing)
+- **Multi-tenant Isolation:** Dedicated Worker instances with V8 isolate separation and storage namespacing
+- **Authentication Methods:** OAuth 2.1 with PKCE for human users, API keys for service-to-service
+- **Secrets Management:** Encrypted environment variables and KV storage with automated key rotation
 
 For detailed architecture design including multi-tenant isolation, security patterns, and auto-scaling strategies, see: [`docs/architecture-design.md`](docs/architecture-design.md)
 
@@ -172,6 +192,25 @@ For detailed Cloudflare research findings, see: [`docs/cloudflare-services-resea
 
 For detailed architecture design and implementation patterns, see: [`docs/architecture-design.md`](docs/architecture-design.md)
 
+### ✅ Comprehensive Security Strategy
+
+**Key Finding:** 4-layer security model provides enterprise-grade protection for multi-tenant MCP hosting.
+
+#### Security Highlights
+- **OAuth 2.1 Compliance:** Full MCP protocol compliance with PKCE, dynamic client registration, metadata discovery
+- **Dual Authentication:** OAuth 2.1 for human users, API keys for service-to-service communication
+- **Multi-tenant Isolation:** Complete separation using V8 isolates, storage namespacing, and tenant-scoped access controls
+- **Secrets Management:** Encrypted environment variables, KV storage with AES-256-GCM, automated key rotation
+
+#### Implementation Strategy
+- Implement OAuth 2.1 authorization server with Cloudflare Workers
+- Use tenant-scoped API keys with format `smcp_<tenantId>_<randomBytes>`
+- Leverage Zod for input validation and JOSE for JWT handling
+- Implement comprehensive audit logging with 30-day retention
+- Use role-based access control with Admin, MCP User, and Read-Only roles
+
+For detailed security strategy and implementation patterns, see: [`docs/security-strategy.md`](docs/security-strategy.md)
+
 ## Development
 
 ### Prerequisites
@@ -203,10 +242,12 @@ POC-SMCP/
 ├── docs/                    # Project documentation
 │   ├── mcp-protocol-research.md
 │   ├── cloudflare-services-research.md
-│   └── architecture-design.md
+│   ├── architecture-design.md
+│   └── security-strategy.md
 ├── memory-bank/             # AI assistant context files
 │   ├── activeContext.md
 │   ├── decisionLog.md
+│   ├── dependencies.md
 │   ├── productContext.md
 │   ├── product-backlog.md
 │   ├── progress.md
@@ -231,7 +272,7 @@ This is a proof-of-concept project currently in active development. Contribution
 
 ### Current Development Status
 
-- **Phase 1:** Research & Planning (In Progress – 3/5 tasks completed)
+- **Phase 1:** Research & Planning (In Progress – 4/5 tasks completed)
 - **Contributions:** Not yet accepting external contributions
 - **Timeline:** Contributions welcome after Phase 2 completion
 
@@ -253,6 +294,8 @@ This project is licensed under the MIT License – see the [LICENSE](LICENSE) fi
 - **MCP Research:** [`docs/mcp-protocol-research.md`](docs/mcp-protocol-research.md) - Protocol analysis and findings
 - **Cloudflare Research:** [`docs/cloudflare-services-research.md`](docs/cloudflare-services-research.md) - Infrastructure analysis and cost modeling
 - **Architecture Design:** [`docs/architecture-design.md`](docs/architecture-design.md) - Multi-tenant hosting architecture and security patterns
+- **Security Strategy:** [`docs/security-strategy.md`](docs/security-strategy.md) - Comprehensive security model and implementation patterns
+- **AI Coding Security:** [`docs/ai-assisted-coding-security.md`](docs/ai-assisted-coding-security.md) - AI-assisted coding vulnerabilities and mitigation strategies
 - **Task Backlog:** [`memory-bank/product-backlog.md`](memory-bank/product-backlog.md) - Planned tasks for development
 
 ## Support & Contact

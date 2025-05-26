@@ -84,4 +84,59 @@ Updates: New decisions appended by AI or user.
 
 ---
 
+**Decision:**
+* Adopt OAuth 2.1 + API Key Dual Authentication Strategy with 4-Layer Security Model
+
+**Rationale:**
+* OAuth 2.1 provides industry-standard authentication for human users with PKCE security
+* API keys enable secure service-to-service communication for automated clients
+* 4-layer security model (Network, Application, Runtime, Data) provides comprehensive defense-in-depth
+* MCP protocol compliance ensures compatibility with MCP 2025-03-26 authorization specification
+* Cloudflare's native security features (DDoS, WAF, TLS) provide robust network-level protection
+
+**Context/Trigger:**
+* SMCP-001-04 security strategy definition required comprehensive authentication and authorization approach
+* Need to balance security, usability, and MCP protocol compliance
+* Multi-tenant hosting requires robust isolation and access control mechanisms
+
+**Implementation Notes:**
+* OAuth 2.1: Full compliance with PKCE, dynamic client registration, metadata discovery
+* API Keys: Tenant-scoped with format `smcp_<tenantId>_<randomBytes>` and automated rotation
+* Secrets Management: Cloudflare encrypted environment variables + KV storage with AES-256-GCM
+* Multi-tenant Isolation: V8 isolates + storage namespacing + tenant-scoped access controls
+* Audit Logging: Comprehensive logging with tenant context and 30-day retention
+
+**Timestamp:** 2025-05-25
+
+---
+
+**Decision:**
+* Implement Comprehensive AI-Assisted Coding Security Framework with 5-Layer Security Model
+
+**Rationale:**
+* AI-assisted coding tools introduce systematic security vulnerabilities in ~40% of generated code
+* Emerging threat landscape requires proactive security measures for AI-generated code
+* SMCP platform development will likely use AI coding assistants, creating new attack vectors
+* Traditional security models inadequate for AI-specific threats like prompt injection and model poisoning
+* Need for enhanced supply chain security to address AI-introduced vulnerabilities
+
+**Context/Trigger:**
+* Extension of SMCP-001-04 to address emerging AI-assisted coding security risks
+* Research findings showing significant security vulnerabilities in AI-generated code
+* Industry incidents involving prompt injection and AI-generated malicious code
+* Need to future-proof SMCP security strategy against evolving AI threats
+
+**Implementation Notes:**
+* Enhanced 5-Layer Security Model: Added Layer 5 for AI-Generated Code Security
+* Mandatory security review for all AI-generated code sections with metadata tracking
+* Secure prompting practices and context validation for AI interactions
+* Enhanced SAST/DAST scanning specifically targeting AI-generated code patterns
+* Human oversight requirements for AI-generated authentication and authorization code
+* Behavioral monitoring for AI-generated code in production environments
+* Integration with existing 4-layer security architecture without disruption
+
+**Timestamp:** 2025-05-25
+
+---
+
 *(New entries added above this line)*
