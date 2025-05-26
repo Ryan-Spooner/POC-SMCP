@@ -1,209 +1,52 @@
 # .augment-guidelines
-# Defines rules and context management for the AI assistant in this workspace.
-# Version: 1.0
+# AI Assistant Rules for POC-SMCP Project
+# These workspace-specific rules take precedence over any global settings.
 
-# --- Rule Priority ---
-# Ensures these workspace-specific rules take precedence over any global settings.
-rule_priority:
-  description: "These Workspace AI Rules override any conflicting global or system rules."
-  precedence: ABSOLUTE # Workspace rules are final.
+## Project Context
+- This is the POC-SMCP project: a proof-of-concept for a secure marketplace for vetted MCP servers
+- Focus on Cloudflare-based hosting infrastructure and security-first design
+- Current phase: POC development with emphasis on Streamable HTTP transport protocol
+- Target: Building secure AI-assisted development practices
 
-# --- Memory System ---
-# Configures the file-based memory bank used by the AI for context persistence.
-memory_system:
-  type: memory-bank # Specifies the type of memory system.
-  directory: ./memory-bank # Relative path to the directory storing memory files.
+## Memory Bank System
+- Always check and update memory-bank files when working on tasks
+- Core files: productContext.md, activeContext.md, progress.md, product-backlog.md, decisionLog.md, systemPatterns.md
+- Update strategies: APPEND to logs/decisions, REPLACE_SECTION for dynamic states using ## headers
+- Keep memory-bank files current and cross-referenced
 
-  # Core Files: Key documents the AI should be aware of and potentially update.
-  core_files:
-    productContext: productContext.md   # High-level project goals, features, architecture.
-    activeContext: activeContext.md    # Current focus, recent changes, open questions.
-    progress: progress.md            # Task tracking (completed, current, backlog).
-    productBacklog: product-backlog.md  # Detailed project phases, tasks, and backlog management.
-    decisionLog: decisionLog.md        # Log of significant technical decisions.
-    systemPatterns: systemPatterns.md  # Recurring code patterns, architectural choices, style guides.
+## Development Practices
 
-  # Update Strategy: Defines how the AI should modify core files.
-  # Options: APPEND (add to end), REPLACE_SECTION (find header, replace content below it), OVERWRITE (replace entire file).
-  # Note: The AI should use judgment; e.g., 'APPEND' to logs, 'REPLACE_SECTION' for dynamic states.
-  update_strategies:
-    productContext.md: APPEND # Product context generally evolves by adding info.
-    activeContext.md: REPLACE_SECTION # Current focus/changes usually replace previous state. Use ## headers as anchors.
-    progress.md: APPEND # Append completed tasks, discovered items. Current tasks might need section replacement.
-    product-backlog.md: REPLACE_SECTION # Task status updates replace sections; completed tasks moved to completion section.
-    decisionLog.md: APPEND # Always append new decisions chronologically.
-    systemPatterns.md: APPEND # Add new patterns or refine existing ones (manual edit might be better for refinement).
+- Use package managers (npm, pip, cargo, etc.) instead of manually editing dependency files
+- Always make a detailed plan before taking any action
+- Search for information and use codebase-retrieval before making edits
+- Focus on security-first design patterns for AI-assisted development
+- Document all significant technical decisions in decisionLog.md
+- Update progress.md when completing tasks or discovering new requirements
 
-  # Initial Content Templates: Defines the structure if files need creation.
-  # These are primarily for reference; an initialization script should handle actual creation.
-  initial_content_templates:
-    productContext.md: |
-      ---
-      Source: Based on projectBrief.md and initial discussions.
-      Updates: Appended by AI as project understanding evolves.
-      Last Reviewed: 2025-05-24
-      ---
+## Coding Standards
+- Prefer TypeScript for new JavaScript code
+- Use Python 3.11+ features and type hints
+- Follow security best practices for MCP server development
+- Implement proper error handling and logging
+- Write tests for new functionality before implementation
+- Use descriptive variable names and avoid inline comments
 
-      # Product Context
+## Security Requirements
+- Validate all inputs from MCP servers
+- Implement proper authentication and authorization
+- Use secure communication protocols (HTTPS, WSS)
+- Follow OWASP guidelines for web application security
+- Document security considerations in systemPatterns.md
+- Regular dependency scanning and updates
 
-      ## Project Goal
-      * [Brief description of the overall aim]
+## Cloudflare Integration
+- Use Cloudflare Workers for serverless functions
+- Implement proper rate limiting and DDoS protection
+- Utilize Cloudflare's security features (WAF, Bot Management)
+- Follow Cloudflare best practices for performance optimization
+- Document Cloudflare-specific patterns and configurations
 
-      ## Key Features
-      * [List of primary features or user stories]
-
-      ## Target Audience
-      * [Who is this product for?]
-
-      ## High-Level Architecture
-      * [Overview of major components and technologies]
-
-    activeContext.md: |
-      ---
-      Purpose: Tracks the immediate state of work for AI assistance.
-      Updates: Sections often replaced by AI based on recent activity.
-      Timestamp: 2025-05-24 15:15:37
-      ---
-
-      # Active Context
-
-      ## Current Focus
-      * [Specific task, module, or problem being worked on right now]
-
-      ## Recent Significant Changes (Last 1-2 sessions)
-      * [Brief summary of major code changes, file additions, etc.]
-
-      ## Open Questions / Blockers / Issues
-      * [Any unresolved questions, dependencies, or problems hindering progress]
-
-      ## Next Immediate Step(s)
-      * [What the user plans to do next]
-
-    progress.md: |
-      ---
-      Purpose: High-level overview of task status.
-      Updates: Primarily appended by AI upon task completion or discovery.
-      Last Updated: 2025-05-24
-      ---
-
-      # Progress Tracker
-
-      ## Completed Tasks
-      * 2025-05-24 - [Description of completed task]
-
-      ## Current Tasks / In Progress
-      * [Task ID/Link] - [Description of task currently being worked on]
-
-      ## Blocked Tasks
-      * [Task ID/Link] - [Description] - **Blocker:** [Reason]
-
-      ## Next Steps / Backlog (Prioritized)
-      * [Task ID/Link] - [Description]
-
-      ## Discovered During Work (Needs Triaging)
-      * 2025-05-24 - [New subtask, bug, or required refactor identified]
-
-    decisionLog.md: |
-      ---
-      Purpose: Records significant technical or architectural choices.
-      Updates: New decisions appended by AI or user.
-      ---
-
-      # Decision Log
-
-      **Decision:**
-      * [Clear statement of the decision made]
-
-      **Rationale:**
-      * [Why this decision was made; alternatives considered]
-
-      **Context/Trigger:**
-      * [What led to needing this decision?]
-
-      **Implementation Notes:**
-      * [Key files affected, specific techniques used, gotchas]
-
-      **Timestamp:** 2025-05-24 15:15:37
-
-      ---
-
-      *(New entries added above this line)*
-
-    systemPatterns.md: |
-     ---
-     Purpose: Documents recurring design patterns, coding standards, and architectural choices specific to this project.
-     Updates: Appended or refined by AI/user as patterns emerge or standards are set.
-     Last Reviewed: 2025-05-24
-     ---
-
-     # System Patterns & Conventions
-
-     ## Coding Style / Linting
-     * [Linter: (add if defined]
-     * [Formatter: (add if defined)]
-     * [Style Guide: (add if defined)]
-     * [Docstrings: Google style (Mandatory for public APIs)]
-     * [Type Hinting: Mandatory for function signatures]
-
-     ## Common Data Structures
-     * [e.g., Standard format for API responses, common state objects]
-
-     ## Architectural Patterns
-     * [Add if defined]
-
-     ## Naming Conventions
-     * [Variables/Functions: snake_case]
-     * [Constants: UPPER_SNAKE_CASE]
-     * [Classes: PascalCase]
-     * [Files: kebab-case]
-
-     ## Error Handling Strategy
-     * [Add if defined]
-
-     ## Security Considerations
-     * [e.g., Input validation practices, secrets management (.env), dependency scanning]
-
-     ## Deployment Patterns
-     * [add if defined]
-
-    product-backlog.md: |
-      ---
-      Purpose: Tracks project phases, tasks, and backlog items for development.
-      Updates: Tasks moved between sections as they progress through development lifecycle.
-      Last Updated: 2025-05-24
-      ---
-
-      # Product Backlog
-
-      ## Project Overview
-      **Project:** [Project Name]
-      **Duration:** [Timeline]
-      **Goal:** [Primary objective]
-
-      ---
-
-      ## Phase 1: [Phase Name] ([Timeline])
-      **Status:** Not Started | In Progress | Completed
-      **Goal:** [Phase objective]
-
-      ### Tasks
-      - [ ] **[TASK-ID]** - [Task Description]
-        - [Detailed requirements]
-        - **Priority:** High | Medium | Low | **Estimate:** [Time estimate]
-
-      ---
-
-      ## Backlog Items (Future Considerations)
-      - **[FUTURE-ID]** - [Future enhancement description]
-
-      ---
-
-      ## Completed Tasks
-      *(Tasks will be moved here as they are completed)*
-
-      ---
-
-      ## Notes
-      - Task estimates are in working days
-      - Priority levels: High, Medium, Low
-      - Tasks may be broken down further during implementation
+## Memory Bank Templates
+- Template files for memory-bank initialization are maintained separately
+- See memory-bank directory for file structure and content templates
+- Use initialization scripts for creating new memory-bank files when needed

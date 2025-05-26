@@ -111,6 +111,33 @@ Updates: New decisions appended by AI or user.
 ---
 
 **Decision:**
+* Refactor .augment-guidelines File to Follow Augment Code Best Practices
+
+**Rationale:**
+* Research revealed that standard .augment-guidelines files use simple text format, not complex YAML structures
+* Industry examples show preference for bullet-point lists with clear, actionable rules
+* Original file was over-engineered with 210+ lines of template content that belonged elsewhere
+* Simpler format improves readability and maintainability for AI assistant configuration
+* Separation of concerns: guidelines for rules, memory-bank directory for templates
+
+**Context/Trigger:**
+* Side-task to research and align .augment-guidelines with Augment Code best practices
+* Analysis of GitHub repositories using Augment Code showed simpler configuration patterns
+* Need to optimize AI assistant configuration for better performance and clarity
+
+**Implementation Notes:**
+* Reduced file from 210 lines to 53 lines by removing embedded templates
+* Converted complex YAML structure to simple markdown with bullet points
+* Preserved memory-bank system functionality with clear references
+* Added project-specific rules for POC-SMCP (security, Cloudflare, MCP development)
+* Maintained all essential configuration while improving readability
+* Template content moved to separate memory-bank directory structure
+
+**Timestamp:** 2025-05-25
+
+---
+
+**Decision:**
 * Implement Comprehensive AI-Assisted Coding Security Framework with 5-Layer Security Model
 
 **Rationale:**

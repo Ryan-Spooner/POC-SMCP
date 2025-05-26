@@ -22,6 +22,8 @@
 
 This POC focuses on building a secure, Cloudflare-based hosting environment for MCP servers as the foundation for the future Secure MCP (SMCP) platform. The mature platform will include a vetted marketplace, learning resources, and robust data infrastructure, but this POC specifically validates the core hosting capabilities.
 
+*For a comprehensive overview suitable for stakeholders and potential contributors, see the [Executive Summary](docs/executive-summary.md).*
+
 ### Project Goals
 
 - **Goal 1:** Create a secure, Cloudflare-based hosting environment for MCP servers
@@ -290,6 +292,7 @@ This project is licensed under the MIT License – see the [LICENSE](LICENSE) fi
 
 ## Documentation
 
+- **Executive Summary:** [`docs/executive-summary.md`](docs/executive-summary.md) - Comprehensive overview for stakeholders and potential contributors
 - **Project Brief:** [`projectBrief.md`](projectBrief.md) - Detailed project requirements and scope
 - **MCP Research:** [`docs/mcp-protocol-research.md`](docs/mcp-protocol-research.md) - Protocol analysis and findings
 - **Cloudflare Research:** [`docs/cloudflare-services-research.md`](docs/cloudflare-services-research.md) - Infrastructure analysis and cost modeling

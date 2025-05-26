@@ -35,6 +35,12 @@ Last Updated: 2025-05-24
   - **Extension**: Researched and documented AI-assisted coding security vulnerabilities
   - **Extension**: Enhanced security model to 5-layer architecture including AI-generated code security
   - **Extension**: Created comprehensive AI security research document: docs/ai-assisted-coding-security.md
+* 2025-05-25 - **.augment-guidelines Refactoring** - Optimized AI assistant configuration
+  - Researched Augment Code best practices and industry examples
+  - Refactored complex YAML structure to simple, actionable markdown format
+  - Reduced file size from 210 lines to 53 lines while preserving functionality
+  - Improved readability and maintainability of AI assistant rules
+  - Documented decision and implementation notes in decisionLog.md
 
 ## Current Tasks / In Progress
 * SMCP-001 - Discovery & Planning Phase (Week 1-2): Research and architecture design
