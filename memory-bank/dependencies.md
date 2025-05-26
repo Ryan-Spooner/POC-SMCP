@@ -20,31 +20,43 @@ Last Reviewed: 2025-05-24
 
 ## Technology Stack
 
-### Frontend
-- **Framework:** [e.g., React 18.2.0, Vue 3.x, Angular 15.x]
-- **Build Tool:** [e.g., Vite, Webpack, Parcel]
-- **Styling:** [e.g., Tailwind CSS, Styled Components, SCSS]
-- **State Management:** [e.g., Redux, Zustand, Pinia]
+### Runtime & Language
+- **Runtime:** Cloudflare Workers (V8 JavaScript Engine)
+- **Language:** TypeScript/JavaScript (ES2022+)
+- **Protocol:** Model Context Protocol (MCP) 2025-03-26
+- **Transport:** Streamable HTTP with Server-Sent Events (SSE)
 
-### Backend
-- **Runtime/Language:** [e.g., Node.js 18.x, Python 3.11, Go 1.19]
-- **Framework:** [e.g., Express.js, FastAPI, Gin]
-- **Database:** [e.g., PostgreSQL 15.x, MongoDB 6.x, Redis 7.x]
-- **ORM/ODM:** [e.g., Prisma, SQLAlchemy, Mongoose]
+### Infrastructure (Cloudflare Services)
+- **Compute:** Cloudflare Workers (128MB memory, 5min CPU time)
+- **Storage:** Cloudflare KV (session management), Cloudflare R2 (object storage)
+- **Networking:** Cloudflare DNS (custom domains), Global Edge Network
+- **Security:** Built-in DDoS protection, SSL/TLS termination, WAF
 
-### Infrastructure & DevOps
-- **Hosting:** [e.g., Vercel, AWS, Google Cloud, Docker]
-- **CI/CD:** [e.g., GitHub Actions, GitLab CI, Jenkins]
-- **Monitoring:** [e.g., Sentry, DataDog, New Relic]
-- **Analytics:** [e.g., Google Analytics, Mixpanel, PostHog]
+### Development Tools
+- **CLI:** Wrangler (Cloudflare Workers development)
+- **Package Manager:** npm/yarn/pnpm
+- **Build Tool:** Wrangler (built-in bundling and deployment)
+- **Local Development:** Miniflare (local Workers testing)
+
+### Monitoring & Observability
+- **Analytics:** Cloudflare Analytics (built-in)
+- **Logging:** Cloudflare Workers logs and custom logging
+- **Health Checks:** Custom health endpoints
+- **Performance:** Cloudflare Performance monitoring
 
 ## Dependency Decisions Log
 
-### 2025-05-24 - [Decision Title]
-**Decision:** [What was decided]
-**Rationale:** [Why this choice was made]
-**Alternatives Considered:** [Other options that were evaluated]
-**Impact:** [How this affects the project]
+### 2025-05-25 - Cloudflare Workers as Primary Runtime
+**Decision:** Use Cloudflare Workers exclusively for MCP server hosting
+**Rationale:** Native HTTP support, global edge deployment, auto-scaling, built-in security
+**Alternatives Considered:** AWS Lambda, Vercel Functions, traditional VPS hosting
+**Impact:** Enables global performance, eliminates infrastructure management, reduces costs
+
+### 2025-05-25 - TypeScript as Primary Language
+**Decision:** Use TypeScript for all MCP server implementations
+**Rationale:** Type safety, excellent tooling, native Cloudflare Workers support
+**Alternatives Considered:** JavaScript only, Python (incompatible), Go (limited support)
+**Impact:** Improved code quality, better developer experience, easier maintenance
 
 ## Troubleshooting
 

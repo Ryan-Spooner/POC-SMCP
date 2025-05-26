@@ -57,4 +57,31 @@ Updates: New decisions appended by AI or user.
 
 ---
 
+**Decision:**
+* Adopt V8 Isolate-Based Multi-Tenant Architecture with 4-Layer Security Model
+
+**Rationale:**
+* V8 isolates provide robust runtime isolation between tenant MCP servers
+* 4-layer security (Network, Application, Runtime, Data) ensures comprehensive protection
+* Worker-level isolation prevents cross-tenant access and resource conflicts
+* Storage namespace isolation (KV prefixes, R2 buckets) maintains data separation
+* Cloudflare's native auto-scaling eliminates need for custom scaling logic
+
+**Context/Trigger:**
+* SMCP-001-03 architecture design required defining multi-tenant hosting approach
+* Need to balance security, performance, and operational simplicity
+* Must leverage Cloudflare Workers' strengths while mitigating limitations
+
+**Implementation Notes:**
+* Each tenant gets dedicated Worker instance with isolated V8 runtime
+* KV storage uses tenant-{id}: prefixes for all keys
+* R2 storage uses bucket-level or prefix-based separation
+* Session management via Mcp-Session-Id headers with tenant validation
+* Auto-scaling handled by Cloudflare's native edge distribution
+* Cold start mitigation through keep-alive strategies and resource preloading
+
+**Timestamp:** 2025-05-25
+
+---
+
 *(New entries added above this line)*

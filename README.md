@@ -54,7 +54,7 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
   - ✅ Analyzed MCP server runtime requirements
   - ✅ Documented protocol communication patterns
   - ✅ Identified Cloudflare Workers compatibility constraints
-  - ✅ Established Streamable HTTP as optimal transport mechanism
+  - ✅ Established Streamable HTTP as the optimal transport mechanism
 
 - **SMCP-001-02** - Cloudflare Services Research
   - ✅ Evaluated Cloudflare Workers capabilities and limitations
@@ -62,18 +62,23 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
   - ✅ Documented service limits and pricing considerations
   - ✅ Validated cost-effectiveness and technical compatibility
 
+- **SMCP-001-03** - Architecture Design
+  - ✅ Designed multi-tenant hosting architecture with V8 isolate-based separation
+  - ✅ Defined 4-layer security isolation patterns with tenant-scoped access controls
+  - ✅ Planned auto-scaling and load balancing using Cloudflare's native capabilities
+  - ✅ Created comprehensive system architecture diagrams and data flow patterns
+
 ### Current Tasks 🔄
 
-- **SMCP-001-03** - Architecture Design (Next)
-- **SMCP-001-04** - Security Strategy Definition (Planned)
+- **SMCP-001-04** - Security Strategy Definition (Next)
 - **SMCP-001-05** - Development Environment Setup (Planned)
 
 ### Project Phases
 
-1. **Phase 1: Discovery & Planning** (Weeks 1-2) - *Current*
-2. **Phase 2: Infrastructure Development** (Weeks 3-4)
-3. **Phase 3: Advanced Features** (Weeks 5-6)
-4. **Phase 4: Testing & Validation** (Weeks 7-8)
+1. **Phase 1: Discovery & Planning** (Weeks 1–2) - *Current*
+2. **Phase 2: Infrastructure Development** (Weeks 3–4)
+3. **Phase 3: Advanced Features** (Weeks 5–6)
+4. **Phase 4: Testing & Validation** (Weeks 7–8)
 
 ## Architecture
 
@@ -102,6 +107,8 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
 - **Real-time:** Server-Sent Events (SSE) for streaming
 - **Resumability:** Event IDs for connection recovery
 
+For detailed architecture design including multi-tenant isolation, security patterns, and auto-scaling strategies, see: [`docs/architecture-design.md`](docs/architecture-design.md)
+
 ## Research Findings
 
 ### ✅ MCP Compatibility with Cloudflare Workers
@@ -128,7 +135,7 @@ For detailed MCP research findings, see: [`docs/mcp-protocol-research.md`](docs/
 **Key Finding:** Cloudflare provides a comprehensive, cost-effective infrastructure stack for MCP hosting.
 
 #### Service Capabilities
-- **Workers:** 128MB memory, 5min CPU time, global edge deployment
+- **Workers:** 128MB memory, 5 min CPU time, global edge deployment
 - **KV:** Low-latency key-value storage for session management
 - **R2:** S3-compatible object storage with zero egress fees
 - **DNS:** Custom domains with automatic certificate management
@@ -142,10 +149,28 @@ For detailed MCP research findings, see: [`docs/mcp-protocol-research.md`](docs/
 - Use Workers for MCP server hosting with HTTP transport
 - Implement session management via KV with `Mcp-Session-Id` headers
 - Leverage R2 for larger data storage needs
-- Use Custom Domains for clean MCP server endpoints
+- Use Custom Domains as clean MCP server endpoints
 - Implement multi-tenant isolation at Worker and storage levels
 
 For detailed Cloudflare research findings, see: [`docs/cloudflare-services-research.md`](docs/cloudflare-services-research.md)
+
+### ✅ Multi-Tenant Architecture Design
+
+**Key Finding:** V8 isolate-based architecture provides robust security and scalability for multi-tenant MCP hosting.
+
+#### Architecture Highlights
+- **Multi-tenant Isolation:** V8 isolate separation with storage namespace isolation
+- **4-Layer Security:** Network, application, runtime, and data security layers
+- **Auto-scaling Strategy:** Cloudflare's native scaling with geographic distribution
+- **Performance Optimization:** Cold start mitigation and intelligent caching
+
+#### Implementation Patterns
+- Worker-level tenant isolation with dedicated instances per MCP server
+- KV-based session management with tenant-scoped access controls
+- R2 storage separation using bucket-level or prefix-based isolation
+- Global load balancing with automatic failover and latency optimization
+
+For detailed architecture design and implementation patterns, see: [`docs/architecture-design.md`](docs/architecture-design.md)
 
 ## Development
 
@@ -177,7 +202,8 @@ cd POC-SMCP
 POC-SMCP/
 ├── docs/                    # Project documentation
 │   ├── mcp-protocol-research.md
-│   └── cloudflare-services-research.md
+│   ├── cloudflare-services-research.md
+│   └── architecture-design.md
 ├── memory-bank/             # AI assistant context files
 │   ├── activeContext.md
 │   ├── decisionLog.md
@@ -194,10 +220,10 @@ POC-SMCP/
 
 ### Development Workflow
 
-1. **Research & Planning** (Phase 1) - Current phase
-2. **Infrastructure Development** (Phase 2) - Basic MCP server implementation
-3. **Advanced Features** (Phase 3) - Auto-scaling, monitoring, deployment
-4. **Testing & Validation** (Phase 4) - Security testing, performance validation
+1. **Research & Planning** (Phase 1) – Current phase
+2. **Infrastructure Development** (Phase 2) – Basic MCP server implementation
+3. **Advanced Features** (Phase 3) – Auto-scaling, monitoring, deployment
+4. **Testing & Validation** (Phase 4) – Security testing, performance validation
 
 ## Contributing
 
@@ -205,7 +231,7 @@ This is a proof-of-concept project currently in active development. Contribution
 
 ### Current Development Status
 
-- **Phase 1:** Research & Planning (In Progress - 2/5 tasks completed)
+- **Phase 1:** Research & Planning (In Progress – 3/5 tasks completed)
 - **Contributions:** Not yet accepting external contributions
 - **Timeline:** Contributions welcome after Phase 2 completion
 
@@ -219,14 +245,15 @@ This is a proof-of-concept project currently in active development. Contribution
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License – see the [LICENSE](LICENSE) file for details.
 
 ## Documentation
 
 - **Project Brief:** [`projectBrief.md`](projectBrief.md) - Detailed project requirements and scope
 - **MCP Research:** [`docs/mcp-protocol-research.md`](docs/mcp-protocol-research.md) - Protocol analysis and findings
 - **Cloudflare Research:** [`docs/cloudflare-services-research.md`](docs/cloudflare-services-research.md) - Infrastructure analysis and cost modeling
-- **Memory Bank:** [`memory-bank/`](memory-bank/) - AI assistant context and decision tracking
+- **Architecture Design:** [`docs/architecture-design.md`](docs/architecture-design.md) - Multi-tenant hosting architecture and security patterns
+- **Task Backlog:** [`memory-bank/product-backlog.md`](memory-bank/product-backlog.md) - Planned tasks for development
 
 ## Support & Contact
 

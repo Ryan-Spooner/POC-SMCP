@@ -20,6 +20,12 @@ Last Updated: 2025-05-24
   - Validated technical compatibility and cost-effectiveness for MCP hosting
   - Documented service limits, pricing models, and integration patterns
   - Created detailed research document: docs/cloudflare-services-research.md
+* 2025-05-25 - **SMCP-001-03** - Architecture Design
+  - Designed multi-tenant hosting architecture using V8 isolate-based separation
+  - Defined 4-layer security isolation patterns with tenant-scoped access controls
+  - Planned auto-scaling and load balancing approach leveraging Cloudflare's native capabilities
+  - Created comprehensive system architecture diagrams and data flow patterns
+  - Created detailed architecture document: docs/architecture-design.md
 
 ## Current Tasks / In Progress
 * SMCP-001 - Discovery & Planning Phase (Week 1-2): Research and architecture design

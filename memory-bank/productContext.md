@@ -1,7 +1,7 @@
 ---
 Source: Based on projectBrief.md and initial discussions.
 Updates: Appended by AI as project understanding evolves.
-Last Reviewed: 2025-05-24
+Last Reviewed: 2025-05-25
 ---
 
 # Product Context
@@ -24,9 +24,9 @@ Last Reviewed: 2025-05-24
 * Future: Users of the complete SMCP marketplace platform
 
 ## High-Level Architecture
-* Cloudflare Workers as primary compute platform for MCP server hosting
-* Cloudflare KV for configuration and metadata storage
-* Cloudflare R2 for larger data storage needs
-* TypeScript/JavaScript runtime environment
-* Infrastructure-as-code using Terraform or Pulumi
-* Monitoring and observability through Cloudflare Analytics and custom metrics
+* **Multi-Tenant Hosting:** V8 isolate-based separation with dedicated Worker instances per tenant
+* **4-Layer Security Model:** Network (DDoS, SSL), Application (auth, validation), Runtime (V8 isolates), Data (namespace isolation)
+* **Auto-Scaling Strategy:** Cloudflare's native edge scaling with geographic distribution and automatic load balancing
+* **Storage Architecture:** KV for session management with tenant prefixes, R2 for object storage with bucket isolation
+* **Transport Protocol:** Streamable HTTP with Server-Sent Events for real-time bidirectional communication
+* **Global Performance:** 300+ edge locations with <100ms latency worldwide and automatic failover
