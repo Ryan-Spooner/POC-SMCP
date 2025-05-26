@@ -1,6 +1,6 @@
 # SMCP - Secure MCP Platform (POC)
 
-[![Build Status](https://img.shields.io/badge/build-in--progress-yellow)](https://github.com/Ryan-Spooner/POC-SMCP)
+[![Build Status](https://img.shields.io/badge/build-passing-brightgreen)](https://github.com/Ryan-Spooner/POC-SMCP)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![MCP Protocol](https://img.shields.io/badge/MCP-2025--03--26-green.svg)](https://modelcontextprotocol.io)
 [![Cloudflare Workers](https://img.shields.io/badge/Cloudflare-Workers-orange.svg)](https://workers.cloudflare.com)
@@ -34,7 +34,7 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
 
 - **MCP Server Hosting:** Deploy and run MCP servers on Cloudflare Workers using Streamable HTTP transport
 - **Multi-tenant Isolation:** Secure separation between different MCP server instances using V8 isolates
-- **4-Layer Security Model:** Comprehensive security with Network, Application, Runtime, and Data protection
+- **5-Layer Security Model:** Comprehensive security with Network, Application, Runtime, Data, and AI-Generated Code protection
 - **Dual Authentication:** OAuth 2.1 for human users and API keys for service-to-service communication
 - **Auto-scaling:** Automatic scaling based on demand and usage patterns
 - **Health Monitoring:** Real-time monitoring and health checks for hosted servers
@@ -50,7 +50,7 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
 
 ## Project Status
 
-**Current Phase:** Discovery & Planning (Week 1-2)
+**Current Phase:** Infrastructure Development (Week 3-4)
 **Timeline:** 8-week POC development cycle
 
 ### Completed Tasks ✅
@@ -69,12 +69,12 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
 
 - **SMCP-001-03** - Architecture Design
   - ✅ Designed multi-tenant hosting architecture with V8 isolate-based separation
-  - ✅ Defined 4-layer security isolation patterns with tenant-scoped access controls
+  - ✅ Defined 5-layer security isolation patterns with tenant-scoped access controls
   - ✅ Planned auto-scaling and load balancing using Cloudflare's native capabilities
   - ✅ Created comprehensive system architecture diagrams and data flow patterns
 
 - **SMCP-001-04** - Security Strategy Definition (Extended)
-  - ✅ Defined comprehensive 4-layer security model (Network, Application, Runtime, Data)
+  - ✅ Defined comprehensive 5-layer security model (Network, Application, Runtime, Data, AI-Generated Code)
   - ✅ Established multi-tenant isolation requirements with V8 isolate separation
   - ✅ Designed OAuth 2.1 + API key authentication strategy with MCP protocol compliance
   - ✅ Planned secrets management using Cloudflare encrypted environment variables
@@ -83,14 +83,24 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
   - ✅ **Extension**: Enhanced to 5-layer security model including AI-generated code security
   - ✅ **Extension**: Developed comprehensive AI coding security mitigation strategies
 
+- **SMCP-001-05** - Development Environment Setup
+  - ✅ Installed and configured Wrangler CLI v4.16.1 for Cloudflare Workers development
+  - ✅ Set up TypeScript project with strict mode and comprehensive type checking
+  - ✅ Created multi-tenant project structure following established architecture patterns
+  - ✅ Configured ESLint, Prettier, and Jest testing framework with TypeScript integration
+  - ✅ Implemented basic Worker template with 5-layer security model structure
+  - ✅ Created Durable Object (McpServerInstance) for stateful MCP server management
+  - ✅ Set up development scripts, environment configuration, and secrets management templates
+  - ✅ Verified functional local development environment with successful Wrangler dev server
+
 ### Current Tasks 🔄
 
-- **SMCP-001-05** - Development Environment Setup (Next)
+- **SMCP-002-01** - Basic Cloudflare Workers Setup (Next)
 
 ### Project Phases
 
-1. **Phase 1: Discovery & Planning** (Weeks 1–2) - *Current*
-2. **Phase 2: Infrastructure Development** (Weeks 3–4)
+1. **Phase 1: Discovery & Planning** (Weeks 1–2) - ✅ *Completed*
+2. **Phase 2: Infrastructure Development** (Weeks 3–4) - *Current*
 3. **Phase 3: Advanced Features** (Weeks 5–6)
 4. **Phase 4: Testing & Validation** (Weeks 7–8)
 
@@ -124,7 +134,7 @@ This POC focuses on building a secure, Cloudflare-based hosting environment for 
 
 ### Security Architecture
 
-- **4-Layer Security Model:** Network (DDoS, SSL, WAF) → Application (OAuth 2.1, validation) → Runtime (V8 isolates) → Data (encryption, namespacing)
+- **5-Layer Security Model:** Network (DDoS, SSL, WAF) → Application (OAuth 2.1, validation) → Runtime (V8 isolates) → Data (encryption, namespacing) → AI-Generated Code (validation, monitoring)
 - **Multi-tenant Isolation:** Dedicated Worker instances with V8 isolate separation and storage namespacing
 - **Authentication Methods:** OAuth 2.1 with PKCE for human users, API keys for service-to-service
 - **Secrets Management:** Encrypted environment variables and KV storage with automated key rotation
@@ -182,7 +192,7 @@ For detailed Cloudflare research findings, see: [`docs/cloudflare-services-resea
 
 #### Architecture Highlights
 - **Multi-tenant Isolation:** V8 isolate separation with storage namespace isolation
-- **4-Layer Security:** Network, application, runtime, and data security layers
+- **5-Layer Security:** Network, application, runtime, data, and AI-generated code security layers
 - **Auto-scaling Strategy:** Cloudflare's native scaling with geographic distribution
 - **Performance Optimization:** Cold start mitigation and intelligent caching
 
@@ -196,13 +206,14 @@ For detailed architecture design and implementation patterns, see: [`docs/archit
 
 ### ✅ Comprehensive Security Strategy
 
-**Key Finding:** 4-layer security model provides enterprise-grade protection for multi-tenant MCP hosting.
+**Key Finding:** 5-layer security model provides enterprise-grade protection for multi-tenant MCP hosting.
 
 #### Security Highlights
 - **OAuth 2.1 Compliance:** Full MCP protocol compliance with PKCE, dynamic client registration, metadata discovery
 - **Dual Authentication:** OAuth 2.1 for human users, API keys for service-to-service communication
 - **Multi-tenant Isolation:** Complete separation using V8 isolates, storage namespacing, and tenant-scoped access controls
 - **Secrets Management:** Encrypted environment variables, KV storage with AES-256-GCM, automated key rotation
+- **AI-Generated Code Security:** Validation, monitoring, and secure prompting practices for AI-assisted development
 
 #### Implementation Strategy
 - Implement OAuth 2.1 authorization server with Cloudflare Workers
@@ -217,10 +228,12 @@ For detailed security strategy and implementation patterns, see: [`docs/security
 
 ### Prerequisites
 
-- Node.js 18+ (for development tools)
+- Node.js 18+ (for development tools) - ✅ *Tested with Node.js v22.14.0*
 - Cloudflare account (for deployment)
-- Wrangler CLI (Cloudflare Workers development)
+- Wrangler CLI (Cloudflare Workers development) - ✅ *Installed v4.16.1*
 - Git (version control)
+
+**Note:** This project is compatible with [asdf](https://github.com/asdf-vm/asdf) version manager for Node.js. The current setup works with both direct Node.js installations and asdf-managed versions.
 
 ### Development Setup
 
@@ -229,13 +242,56 @@ For detailed security strategy and implementation patterns, see: [`docs/security
 git clone https://github.com/Ryan-Spooner/POC-SMCP.git
 cd POC-SMCP
 
-# Development environment setup (coming in Phase 1)
-# npm install
-# wrangler login
-# npm run dev
+# Install dependencies
+npm install
+
+# Build the project
+npm run build
+
+# Run tests (20/20 passing)
+npm test
+
+# Start local development server (runs on http://127.0.0.1:8787)
+npm run dev
+
+# Deploy to Cloudflare (requires authentication)
+npm run deploy
 ```
 
-*Note: Development setup will be completed in task SMCP-001-05*
+### Current Development Environment Status
+
+✅ **Fully Functional Development Environment**
+- TypeScript compilation with strict mode enabled
+- ESLint and Prettier configured and working
+- Jest testing framework with 20/20 tests passing
+- Wrangler CLI v4.16.1 configured for local development
+- Basic Worker template with routing and CORS support
+- Durable Object implementation for MCP server instances
+- Comprehensive type definitions for MCP protocol and security
+
+### Available Scripts
+
+#### Development Scripts
+- `npm run build` - Compile TypeScript to JavaScript
+- `npm run dev` - Start Wrangler development server
+- `npm run deploy` - Deploy to Cloudflare Workers
+- `npm run clean` - Remove compiled output directory
+
+#### Testing Scripts
+- `npm test` - Run Jest test suite (includes type checking)
+- `npm run test:watch` - Run tests in watch mode
+- `npm run test:coverage` - Run tests with coverage report
+
+#### Code Quality Scripts
+- `npm run lint` - Run ESLint on TypeScript files
+- `npm run lint:fix` - Fix ESLint issues automatically
+- `npm run format` - Format code with Prettier
+- `npm run format:check` - Check code formatting without making changes
+- `npm run type-check` - Run TypeScript type checking without compilation
+
+#### Automated Scripts (run automatically)
+- `npm run prebuild` - Runs before build (cleans dist directory)
+- `npm run pretest` - Runs before tests (type checking)
 
 ## Project Structure
 
@@ -245,7 +301,9 @@ POC-SMCP/
 │   ├── mcp-protocol-research.md
 │   ├── cloudflare-services-research.md
 │   ├── architecture-design.md
-│   └── security-strategy.md
+│   ├── security-strategy.md
+│   ├── ai-assisted-coding-security.md
+│   └── executive-summary.md
 ├── memory-bank/             # AI assistant context files
 │   ├── activeContext.md
 │   ├── decisionLog.md
@@ -254,17 +312,47 @@ POC-SMCP/
 │   ├── product-backlog.md
 │   ├── progress.md
 │   └── systemPatterns.md
-├── src/                     # Source code (coming in Phase 2)
-├── tests/                   # Test files (coming in Phase 3)
+├── src/                     # TypeScript source code
+│   ├── workers/             # Cloudflare Workers
+│   │   ├── mcp-host-worker.ts
+│   │   └── mcp-server-instance.ts
+│   ├── types/               # TypeScript type definitions
+│   │   └── mcp-types.ts
+│   ├── utils/               # Utility functions
+│   │   ├── crypto-utils.ts
+│   │   ├── response-utils.ts
+│   │   └── audit-logger.ts
+│   ├── middleware/          # Request middleware
+│   │   ├── auth-middleware.ts
+│   │   └── validation-middleware.ts
+│   ├── auth/                # Authentication logic (planned)
+│   ├── storage/             # Storage abstractions (planned)
+│   └── monitoring/          # Monitoring and logging (planned)
+├── tests/                   # Test files
+│   ├── unit/                # Unit tests
+│   │   └── crypto-utils.test.ts
+│   ├── integration/         # Integration tests (planned)
+│   ├── e2e/                 # End-to-end tests (planned)
+│   └── setup.ts             # Test configuration
+├── config/                  # Configuration files (planned)
+├── scripts/                 # Build and deployment scripts (planned)
+├── dist/                    # Compiled JavaScript (generated)
 ├── .augment-guidelines      # AI assistant rules
-├── projectBrief.md         # Detailed project requirements
-└── README.md               # This file
+├── package.json             # Node.js dependencies and scripts
+├── tsconfig.json            # TypeScript configuration
+├── wrangler.toml            # Cloudflare Workers configuration
+├── jest.config.js           # Jest testing configuration
+├── eslint.config.js         # ESLint configuration
+├── .prettierrc              # Prettier configuration
+├── .env.example             # Environment variables template
+├── projectBrief.md          # Detailed project requirements
+└── README.md                # This file
 ```
 
 ### Development Workflow
 
-1. **Research & Planning** (Phase 1) – Current phase
-2. **Infrastructure Development** (Phase 2) – Basic MCP server implementation
+1. **Research & Planning** (Phase 1) – ✅ Completed
+2. **Infrastructure Development** (Phase 2) – Current phase
 3. **Advanced Features** (Phase 3) – Auto-scaling, monitoring, deployment
 4. **Testing & Validation** (Phase 4) – Security testing, performance validation
 
@@ -274,7 +362,8 @@ This is a proof-of-concept project currently in active development. Contribution
 
 ### Current Development Status
 
-- **Phase 1:** Research & Planning (In Progress – 4/5 tasks completed)
+- **Phase 1:** Research & Planning (✅ Completed – 5/5 tasks completed)
+- **Phase 2:** Infrastructure Development (In Progress – Development environment ready)
 - **Contributions:** Not yet accepting external contributions
 - **Timeline:** Contributions welcome after Phase 2 completion
 

@@ -1,0 +1,76 @@
+# Wrangler configuration for POC-SMCP
+# Cloudflare Workers configuration for secure MCP server hosting
+
+name = "poc-smcp-worker"
+main = "dist/workers/mcp-host-worker.js"
+compatibility_date = "2025-05-25"
+compatibility_flags = ["nodejs_compat"]
+
+# Worker configuration
+[env.development]
+name = "poc-smcp-dev"
+vars = { ENVIRONMENT = "development", LOG_LEVEL = "debug" }
+
+[env.staging]
+name = "poc-smcp-staging"
+vars = { ENVIRONMENT = "staging", LOG_LEVEL = "info" }
+
+[env.production]
+name = "poc-smcp-prod"
+vars = { ENVIRONMENT = "production", LOG_LEVEL = "warn" }
+
+# KV Namespaces for session management and tenant data
+[[kv_namespaces]]
+binding = "SESSIONS"
+preview_id = "sessions-preview"
+id = "sessions-production"
+
+[[kv_namespaces]]
+binding = "TENANT_CONFIG"
+preview_id = "tenant-config-preview"
+id = "tenant-config-production"
+
+[[kv_namespaces]]
+binding = "AUDIT_LOGS"
+preview_id = "audit-logs-preview"
+id = "audit-logs-production"
+
+# R2 Buckets for larger data storage
+[[r2_buckets]]
+binding = "MCP_DATA"
+bucket_name = "poc-smcp-data"
+preview_bucket_name = "poc-smcp-data-preview"
+
+# Durable Objects for stateful MCP server instances
+[[durable_objects.bindings]]
+name = "MCP_SERVER_INSTANCE"
+class_name = "McpServerInstance"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["McpServerInstance"]
+
+# Security and performance settings
+[limits]
+cpu_ms = 30000
+
+[placement]
+mode = "smart"
+
+# Build configuration
+[build]
+command = "npm run build"
+cwd = "."
+watch_dir = "src"
+
+# Development configuration
+[dev]
+ip = "127.0.0.1"
+port = 8787
+local_protocol = "http"
+upstream_protocol = "https"
+
+# Custom domains (to be configured after deployment)
+# [[routes]]
+# pattern = "mcp.yourdomain.com/*"
+# zone_name = "yourdomain.com"

@@ -166,4 +166,32 @@ Updates: New decisions appended by AI or user.
 
 ---
 
+**Decision:**
+* Use Node.js v22.14.0 with TypeScript Strict Mode for Development Environment
+
+**Rationale:**
+* Node.js v22.14.0 provides excellent compatibility with Cloudflare Workers runtime
+* TypeScript strict mode ensures maximum type safety and catches potential runtime errors
+* Comprehensive tooling ecosystem (ESLint, Prettier, Jest) provides professional development experience
+* Wrangler CLI v4.16.1 offers robust local development and deployment capabilities
+* Project structure follows established multi-tenant architecture patterns from system design
+
+**Context/Trigger:**
+* SMCP-001-05 development environment setup required establishing robust development workflow
+* Need for type-safe development environment to support 5-layer security model implementation
+* Requirement for comprehensive testing framework to ensure code quality and security
+
+**Implementation Notes:**
+* TypeScript configured with strict mode, exact optional property types, and comprehensive error checking
+* ESLint configured with TypeScript rules, security-focused rules, and Prettier integration
+* Jest configured with ts-jest for TypeScript support and Miniflare for Workers testing
+* Project structure: src/{workers,types,utils,middleware,auth,storage,monitoring}
+* Development scripts: build, dev, deploy, test, lint, format with proper pre-hooks
+* Wrangler configuration with proper KV, R2, and Durable Object bindings
+* Environment variable templates and secrets management setup
+
+**Timestamp:** 2025-05-26
+
+---
+
 *(New entries added above this line)*
