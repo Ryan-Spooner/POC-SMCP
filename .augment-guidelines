@@ -9,13 +9,14 @@
 - Target: Building secure AI-assisted development practices
 
 ## Memory Bank System
-- Always check and update memory-bank files when working on tasks
-- Core files: productContext.md, activeContext.md, progress.md, product-backlog.md, decisionLog.md, systemPatterns.md
+- Always start with context-index.md for navigation and priority guidance
+- Primary context files: context-summary.md, activeContext.md, productContext.md
+- Secondary context files: current-phase-backlog.md, systemPatterns.md, decisionLog.md
+- Reference context files: progress.md, dependencies.md, troubleshooting.md
 - Update strategies: APPEND to logs/decisions, REPLACE_SECTION for dynamic states using ## headers
-- Keep memory-bank files current and cross-referenced
+- Keep memory-bank files current and cross-referenced with actual codebase files
 
 ## Development Practices
-
 - Use package managers (npm, pip, cargo, etc.) instead of manually editing dependency files
 - Always make a detailed plan before taking any action
 - Search for information and use codebase-retrieval before making edits

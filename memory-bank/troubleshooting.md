@@ -1,87 +1,108 @@
 ---
-Purpose: Document common issues, solutions, and debugging strategies for the project.
+Purpose: Document actual issues, solutions, and debugging strategies for POC-SMCP.
 Updates: Added by AI/user when new issues are discovered and resolved.
-Last Reviewed: 2025-05-25
+Last Reviewed: 2025-05-26
 ---
 
-# Troubleshooting Guide
+# Troubleshooting Guide - POC-SMCP
 
-## Common Issues & Solutions
+## Known Issues & Solutions
 
-### Development Environment
+### Development Environment Issues
 
-#### Issue: [Common Dev Environment Problem]
+#### Issue: TypeScript Compilation Errors with Cloudflare Workers Types
+**Status:** ✅ RESOLVED
 **Symptoms:**
-- [Symptom 1]
-- [Symptom 2]
-
-**Cause:**
-[Root cause explanation]
+- TypeScript errors related to Workers runtime types
+- Missing type definitions for KV, R2, or Durable Objects
 
 **Solution:**
 ```bash
-# Step-by-step solution
-[command 1]
-[command 2]
+# Ensure correct Workers types are installed
+npm install --save-dev @cloudflare/workers-types
+
+# Verify tsconfig.json includes Workers types
+# "types": ["@cloudflare/workers-types", "@types/jest"]
 ```
 
-**Prevention:**
-[How to avoid this issue in the future]
+**Prevention:** Always use latest `@cloudflare/workers-types` and verify tsconfig.json configuration
 
 ---
 
-### Build & Deployment Issues
-
-#### Issue: Build Failures
+#### Issue: Wrangler Dev Server Connection Issues
+**Status:** ✅ RESOLVED
 **Symptoms:**
-- Build process stops with errors
-- Missing assets in build output
+- Local development server fails to start
+- Connection refused errors on http://127.0.0.1:8787
 
-**Common Solutions:**
+**Solution:**
 ```bash
-# Clean build
-npm run clean
-npm run build
+# Check if port is already in use
+lsof -i :8787
 
-# Check environment variables
-echo $NODE_ENV
+# Kill existing processes if needed
+kill -9 [PID]
+
+# Restart development server
+npm run dev
 ```
 
----
-
-### Runtime Issues
-
-#### Issue: Performance Problems
-**Symptoms:**
-- Slow response times
-- High memory usage
-
-**Debugging Steps:**
-1. Check application metrics
-2. Profile the application
-3. Check database performance
+**Prevention:** Always stop dev server properly with Ctrl+C before restarting
 
 ---
 
 ## Debugging Strategies
 
-### Log Analysis
+### Cloudflare Workers Debugging
 ```bash
-# View recent logs
-[log-view-command]
+# View Workers logs during development
+wrangler tail
 
-# Search logs for specific errors
-[log-search-command]
+# Check build output
+npm run build && ls -la dist/
+
+# Validate wrangler configuration
+wrangler whoami
+wrangler kv:namespace list
 ```
 
-## Emergency Procedures
+### TypeScript Debugging
+```bash
+# Type checking without compilation
+npm run type-check
 
-### Production Incident Response
-1. Assess impact and severity
-2. Notify stakeholders
-3. Begin investigation
-4. Implement fix or rollback
+# Detailed TypeScript errors
+npx tsc --noEmit --pretty
+```
+
+### Test Debugging
+```bash
+# Run tests with verbose output
+npm test -- --verbose
+
+# Run specific test file
+npm test -- crypto-utils.test.ts
+
+# Run tests with coverage
+npm run test:coverage
+```
 
 ---
 
-**Note:** Keep this guide updated with new issues and solutions.
+## Emergency Procedures
+
+### Development Environment Recovery
+1. **Clean rebuild**: `npm run clean && npm run build`
+2. **Dependency reset**: `rm -rf node_modules && npm install`
+3. **Configuration check**: Verify `wrangler.toml`, `tsconfig.json`, `package.json`
+4. **Test validation**: `npm test` should show 20/20 passing
+
+### Deployment Issues
+1. **Authentication check**: `wrangler whoami`
+2. **Configuration validation**: `wrangler dev` should work locally
+3. **Gradual deployment**: Test in development environment first
+4. **Rollback**: Use `wrangler rollback` if deployment fails
+
+---
+
+**Note:** This guide contains only actual issues encountered during POC-SMCP development. Template content moved to `memory-bank/templates/` directory.
